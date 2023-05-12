@@ -1,6 +1,8 @@
 from typing import Union
 from module import get_cfg
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
+import time
+from fastapi.responses import FileResponse
 
 app = FastAPI()
 
@@ -9,11 +11,14 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/cfg")
-def get_cfg_from_code(file_name: str, code_str: str) -> Union[dict, str]:
-    try:
-        cfg = get_cfg(file_name, code_str)
-        return cfg
-    except Exception as e:
-        return str(e)
-    
+@app.post("/cfg")
+async def upload_file(file: UploadFile = File(...)):
+    file_contents = await file.read()
+    filename = file.filename.split(".")[0] + "_" + time.strftime("%Y%m%d%H%M%S")
+    cfg = get_cfg(filename, file_contents)
+    return {"path": cfg}
+
+@app.get("/cfg/{file_name}")
+def get_cfg_file(file_name: str):
+    return FileResponse("output/" + file_name + ".png", media_type="image/png")
+

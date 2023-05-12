@@ -1,2 +1,3 @@
 fastapi 
 py2cfg
+sympy
