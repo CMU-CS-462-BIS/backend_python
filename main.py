@@ -14,10 +14,11 @@ if plt == "Linux":
 
 app = FastAPI()
 origins = ["*", "http://localhost:3000"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_methods=["POST", "GET"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
