@@ -3,3 +3,4 @@ py2cfg
 sympy
 uvicorn
 python-multipart
+pathlib
