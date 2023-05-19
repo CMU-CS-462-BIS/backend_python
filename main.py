@@ -4,6 +4,13 @@ import time
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
+import pathlib
+
+plt = platform.system()
+# if linux
+if plt == "Linux":
+    pathlib.WindowsPath = pathlib.PosixPath
+
 app = FastAPI()
 origins = ["*"]
 app.add_middleware(

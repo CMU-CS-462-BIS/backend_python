@@ -3,4 +3,3 @@ py2cfg
 sympy
 uvicorn
 python-multipart
-python-graphviz
