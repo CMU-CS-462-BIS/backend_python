@@ -1,3 +1,4 @@
 fastapi 
 py2cfg
 sympy
+uvicorn
