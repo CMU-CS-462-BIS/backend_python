@@ -1,3 +1,4 @@
+import platform
 from module import get_cfg
 from fastapi import FastAPI, File, UploadFile
 import time
