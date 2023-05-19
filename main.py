@@ -13,7 +13,7 @@ if plt == "Linux":
     pathlib.WindowsPath = pathlib.PosixPath
 
 app = FastAPI()
-origins = ["*"]
+origins = ["*", "http://localhost:3000"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -40,8 +40,9 @@ def get_cfg_file(file_name: str):
     return FileResponse("output/" + file_name + ".png", media_type="image/png")
 
 
-# TODO: Add a way to get the CFG from a string
-# Parameters: code_str: str
+# description: get cfg from code string
+# params: code_str: string
+# return: path: string
 @app.post("/cfg/str")
 async def get_cfg_str(code_str: str = File(...)):
     filename = "cfg_" + time.strftime("%Y%m%d%H%M%S")
