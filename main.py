@@ -3,7 +3,8 @@ from module import get_cfg
 from fastapi import FastAPI, File, UploadFile
 import time
 from fastapi.responses import FileResponse
-from fastapi.middleware.cors import CORSMiddleware
+
+# from fastapi.middleware.cors import CORSMiddleware
 
 import pathlib
 
@@ -13,14 +14,14 @@ if plt == "Linux":
     pathlib.WindowsPath = pathlib.PosixPath
 
 app = FastAPI()
-origins = ["*", "http://localhost:3000"]
+# origins = ["*"]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 
 @app.get("/")
